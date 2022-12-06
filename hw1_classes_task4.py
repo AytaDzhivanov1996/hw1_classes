@@ -1,6 +1,8 @@
 class DataBase:
     def __new__(cls, *args, **kwargs):
-        return cls
+        if not hasattr(cls, 'instance'):
+            cls.instance = super(DataBase, cls).__new__(cls)
+        return cls.instance
 
     def __init__(self, user, psw, port):
         self.user = user
